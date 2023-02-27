@@ -1,0 +1,78 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3546764 */
+  src: url('iconfont.woff2?t=1670302834724') format('woff2'),
+       url('iconfont.woff?t=1670302834724') format('woff'),
+       url('iconfont.ttf?t=1670302834724') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-web:before {
+  content: "\e91b";
+}
+
+.icon-yinyong:before {
+  content: "\e6f4";
+}
+
+.icon-juminjiankangqia-:before {
+  content: "\e613";
+}
+
+.icon-zhuomian:before {
+  content: "\e6d3";
+}
+
+.icon-work:before {
+  content: "\e683";
+}
+
+.icon-huidaodingbu:before {
+  content: "\e707";
+}
+
+.icon-icon_paging_left:before {
+  content: "\e652";
+}
+
+.icon-icon_paging_right:before {
+  content: "\e653";
+}
+
+.icon-icon:before {
+  content: "\e65f";
+}
+
+.icon-rili:before {
+  content: "\e8b4";
+}
+
+.icon-yanjing:before {
+  content: "\e8bf";
+}
+
+.icon-caidanguanyuwo:before {
+  content: "\e60f";
+}
+
+.icon-web__guanyuwomen:before {
+  content: "\e63c";
+}
+
+.icon-fenlei:before {
+  content: "\e600";
+}
+
+.icon-lianjie:before {
+  content: "\e601";
+}
+
+.icon-shu:before {
+  content: "\e69f";
+}
+

@@ -29,7 +29,9 @@ const CommonList = function (props: CommonListProp) {
   const pageSizeRef = useRef(1);
 
   // 每一个月份英文的缩写 取之刚好拿索引取就好了
-  const monthMap = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+  // const monthMap = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+  const monthMap = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+
 
 
 
@@ -110,7 +112,6 @@ const CommonList = function (props: CommonListProp) {
     )
   }
 
-
   return (
     <div className='px-4 py-6'>
       <h1 className='text-2xl relative main-title'>{title}</h1>
@@ -125,13 +126,13 @@ const CommonList = function (props: CommonListProp) {
           data.list.map((item: API.ArtileListItem) => {
             const { coverImg = '', name = '', createTime = '', resume } = item
             return (
-              <div key={item.id} className='transform hover:cursor-pointer motion-reduce:transform-none rounded-xl overflow-hidden mb-8 box-border w-full md:w-1/2 md:px-4' onClick={() => goArticleDetail(item.id)}>
+              <div key={item.id} className=' shadow-sm hover:cursor-pointer motion-reduce:transform-none rounded-xl overflow-hidden mb-8 box-border w-full md:w-1/2 md:px-4' onClick={() => goArticleDetail(item.id)}>
                 {/* 图片 上部分 */}
-                <div className=' w-full'>
-                  <div className="relative ">
+                <div className='w-full'>
+                  <div className="relative overflow-hidden rounded-xl">
                     {/* 给个时间 */}
                     {renderTime(createTime)}
-                    <Image width={150} height={150} className='w-full rounded-t-xl overflow-hidden'
+                    <Image width={600} height={600} className='w-full  overflow-hidden transform hover:scale-110 motion-reduce:transform-none'
                       src={coverImg}
                       alt={name} />
                   </div>

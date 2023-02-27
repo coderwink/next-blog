@@ -37,6 +37,14 @@ class Http {
     // 对参数进行拼接
     if (args.method?.toLocaleLowerCase() === 'get' && args.hasOwnProperty('query')) {
       console.log("存在参数，进行一个处理");
+
+      Object.keys(args.query).forEach((key: string, index) => {
+        if (index === 0) {
+          apiUrl = apiUrl + '?' + key + '=' + args.query[key]
+        } else {
+          apiUrl = apiUrl + '&' + key + '=' + args.query[key]
+        }
+      });
     }
     return new Request(apiUrl, args)
   }
@@ -45,8 +53,6 @@ class Http {
     path: string,
     args: RequestInitData = { method: "get" }
   ): Promise<HttpResponse<API.Result<T>>> {
-    // 判断一下是否存在
-
     return await this.http<T>(this.createRequest<T>(path, args));
   };
 
@@ -65,7 +71,6 @@ class Http {
   ): Promise<HttpResponse<T>> {
     return await this.http<T>(new Request(path, args));
   };
-
 
 }
 export default Http

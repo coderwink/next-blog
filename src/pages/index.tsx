@@ -15,12 +15,8 @@ interface HomeProps {
 }
 // 封装一个hooks读取数据
 const Home = function (props: HomeProps) {
-  // const title = '最新文章'
-  // const centerTitle: any = '知足者常乐，世事都如烟'
   const { title = '', centerTitle, result } = props
   const [animate, setAnimate] = useState(false)
-  const dispatch = useAppDispatch()
-  dispatch(getCurrentAsync({ pageIndex: 1, pageSize: 10 }))
   useEffect(() => {
     const timer = setTimeout(() => { setAnimate(true) })
     return function () {
@@ -52,9 +48,9 @@ export default LayoutHoc(Home);
 
 export async function getServerSideProps(context: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  // console.log(context.params);
+  // console.log(context.params); 
+  // 这里可以写死首页
   const data = await getArticleList({ pageIndex: 1, pageSize: 6 })
-
   return {
     props: {
       title: '最新文章',

@@ -1,71 +1,71 @@
 // index.ts
-import axios from "axios";
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-class Request {
-  // axios 实例
-  instance: AxiosInstance;
-  // 基础配置，url和超时时间
-  baseConfig: AxiosRequestConfig = { baseURL: process.env.NEXT_PUBLIC_BASE_API, timeout: 60000 };
-
-  constructor(config: AxiosRequestConfig) {
-    // 使用axios.create创建axios实例
-    this.instance = axios.create(Object.assign(this.baseConfig, config));
-
-    this.instance.interceptors.request.use(
-      (config: AxiosRequestConfig) => {
-        // 一般会请求拦截里面加token
-        // const token = localStorage.getItem("token");
-        // config.headers["Authorization"] = token;
-        return config;
-      },
-      (err: any) => {
-        return Promise.reject(err);
-      }
-    );
-
-    this.instance.interceptors.response.use(
-      (res: AxiosResponse) => {
-        // 直接返回res，当然你也可以只返回res.data
-        return res.data;
-      },
-      (err: any) => {
-        // 这里用来处理http常见错误，进行全局提示
-        return Promise.reject(err.response);
-      }
-    );
-  }
-
-  // 定义请求方法
-  public request(config: AxiosRequestConfig): Promise<AxiosResponse> {
-    return this.instance.request(config);
-  }
-
-  public get<T = any>(
-    url: string,
-    config?: AxiosRequestConfig
-  ): Promise<API.Result<T>> {
-    return this.instance.get(url, config);
-  }
-  public post<T = any>(
-    url: string,
-    data?: any,
-    config?: AxiosRequestConfig
-  ): Promise<AxiosResponse<API.Result<T>>> {
-    return this.instance.post(url, data, config);
-  }
-  public put<T = any>(
-    url: string,
-    data?: any,
-    config?: AxiosRequestConfig
-  ): Promise<AxiosResponse<API.Result<T>>> {
-    return this.instance.put(url, data, config);
-  }
-
-  public delete<T = any>(
-    url: string,
-    config?: AxiosRequestConfig
-  ): Promise<AxiosResponse<API.Result<T>>> {
-    return this.instance.delete(url, config);
-  }
+interface FetchdefaultConfig {
+  baseURL?: string;
+  timeout?: number;
 }
-export default new Request({});
+interface HttpResponse<T> extends Response {
+  parsedBody?: T;
+}
+interface RequestInitData extends RequestInit {
+  query?: any
+}
+
+class Http {
+  // axios 实例
+  // 基础配置，url和超时时间
+  baseConfig: FetchdefaultConfig = { baseURL: process.env.NEXT_PUBLIC_BASE_API, timeout: 60000 };
+
+  public async http<T>(
+    request: RequestInfo
+  ): Promise<HttpResponse<API.Result<T>>> {
+    const response: HttpResponse<API.Result<T>> = await fetch(
+      request
+    );
+    try {
+      // may error if there is no body
+      response.parsedBody = await response.json();
+    } catch (ex) { }
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response;
+  }
+
+  public createRequest<T>(path: string, args: RequestInitData) {
+    let apiUrl = 'http://localhost:3000' + process.env.NEXT_PUBLIC_BASE_API + path;
+    // 对参数进行拼接
+    if (args.method?.toLocaleLowerCase() === 'get' && args.hasOwnProperty('query')) {
+      console.log("存在参数，进行一个处理");
+    }
+    return new Request(apiUrl, args)
+  }
+
+  public async get<T>(
+    path: string,
+    args: RequestInitData = { method: "get" }
+  ): Promise<HttpResponse<API.Result<T>>> {
+    // 判断一下是否存在
+
+    return await this.http<T>(this.createRequest<T>(path, args));
+  };
+
+  public async post<T>(
+    path: string,
+    body: any,
+    args: RequestInit = { method: "post", body: JSON.stringify(body) }
+  ): Promise<HttpResponse<T>> {
+    return await this.http<T>(new Request(path, args));
+  };
+
+  public async put<T>(
+    path: string,
+    body: any,
+    args: RequestInit = { method: "put", body: JSON.stringify(body) }
+  ): Promise<HttpResponse<T>> {
+    return await this.http<T>(new Request(path, args));
+  };
+
+
+}
+export default Http

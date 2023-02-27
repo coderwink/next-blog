@@ -4,16 +4,20 @@ import CommonList from '@/component/CommonList/Index';
 import NavBar from '@/layout/NavBar/Index';
 import NavWithList from '@/component/Widget/NavWithList/Index';
 import LayoutHoc from '@/layout/index'
-
+import { getArticleList } from '@/services/api'
 import { nextPage, prePage, getCurrentAsync } from '@/store/reducers/ArticleSlice'
 import PureCard from '@/component/Widget/PureCard/Index'
 import { useAppSelector, useAppDispatch } from '@/store/hooks'
-
+interface HomeProps {
+  title: string;
+  centerTitle: string;
+  result: API.pagingResult<API.ArtileListItem>
+}
 // 封装一个hooks读取数据
-const Home = function (props) {
+const Home = function (props: HomeProps) {
   // const title = '最新文章'
   // const centerTitle: any = '知足者常乐，世事都如烟'
-  const { title = '', centerTitle = '' } = props
+  const { title = '', centerTitle, result } = props
   const [animate, setAnimate] = useState(false)
   const dispatch = useAppDispatch()
   dispatch(getCurrentAsync({ pageIndex: 1, pageSize: 10 }))
@@ -37,7 +41,7 @@ const Home = function (props) {
         </div>
       </PureCard>
 
-      <PureCard> <CommonList title={title} /></PureCard>
+      <PureCard> <CommonList title={title} data={result} /></PureCard>
       {/* <NavWithList title='最新文章' /> */}
     </div>
   )
@@ -49,10 +53,13 @@ export default LayoutHoc(Home);
 export async function getServerSideProps(context: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   // console.log(context.params);
+  const data = await getArticleList({ pageIndex: 1, pageSize: 6 })
+
   return {
     props: {
       title: '最新文章',
-      centerTitle: '知足者常乐，世事都如烟'
+      centerTitle: '知足者常乐，世事都如烟',
+      result: data?.parsedBody?.data,
     }, // will be passed to the page component as props
   }
 }

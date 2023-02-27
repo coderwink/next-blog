@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PureCard from '@/component/Widget/PureCard/Index';
-import { getArticleList } from '@/services/api';
 import { throttle } from 'lodash';
 import { useQuery } from 'react-query'
 import Image from 'next/image';
@@ -9,15 +8,14 @@ import Image from 'next/image';
 interface CommonListProp {
   title?: string | undefined, // 当前列表的标题
   articleClassifyId?: string, // 当前列表的类型ID
-  data?: [],// list数据
+  data: API.pagingResult<API.ArtileListItem>,
   paging?: boolean
 };
 
 // 渲染列表数据 从props 中获取
 const CommonList = function (props: CommonListProp) {
 
-
-  const { articleClassifyId = '', title = '', paging = false } = props;
+  const { articleClassifyId = '', title = '', paging = false, data } = props;
   const pageSize = 10;
   //页面 上面的值
   // const [searchParams, setSearchParams] = useSearchParams();
@@ -33,14 +31,8 @@ const CommonList = function (props: CommonListProp) {
   // 每一个月份英文的缩写 取之刚好拿索引取就好了
   const monthMap = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
-  // PC端 大屏幕 用于分页
-  const { isLoading, isError, error, data, isFetching, isPreviousData } = useQuery<any>(['articleList', pageIndex, articleClassifyId], () => getArticleList({
-    pageIndex,
-    pageSize,
-    articleClassifyId
-  }), {
-    keepPreviousData: true
-  });
+
+
   // 只要是菜单就一定存在
 
   /** 前往文章详情 */
@@ -112,15 +104,7 @@ const CommonList = function (props: CommonListProp) {
   }, []);
 
 
-  if (isLoading) {
-    return <span>Loading...</span>;
-  }
-  if (isError) {
-    //@ts-ignore
-    return <span>Error: {error.message}</span>;
-  }
-
-  if (data.count === 0) {
+  if (data.list.length === 0) {
     return (
       <div className=' mx-auto my-auto'>暂无数据</div>
     )
@@ -136,9 +120,9 @@ const CommonList = function (props: CommonListProp) {
       </ul>
       {/* 渲染列表 做一个可以分页 */}
       <div className='flex flex-wrap'>
-        {isFetching ? <span> Loading...</span> : null}
+        {data.count === 0 ? <span> Loading...</span> : null}
         {
-          data.data.list.map((item: API.ArtileListItem) => {
+          data.list.map((item: API.ArtileListItem) => {
             const { coverImg = '', name = '', createTime = '', resume } = item
             return (
               <div key={item.id} className='transform hover:cursor-pointer motion-reduce:transform-none rounded-xl overflow-hidden mb-8 box-border w-full md:w-1/2 md:px-4' onClick={() => goArticleDetail(item.id)}>
@@ -178,13 +162,13 @@ const CommonList = function (props: CommonListProp) {
 
         <button
           onClick={() => {
-            if (!isPreviousData && (data.count / pageSize) > pageIndex) {
+            if ((data.count / pageSize) > pageIndex) {
               // 修改页面路径
               setPage((old) => old + 1);
             }
           }}
           // Disable the Next Page button until we know a next page is available
-          disabled={(isPreviousData || (data.count / pageSize) <= pageIndex)}
+          disabled={((data.count / pageSize) <= pageIndex)}
         >
           <i className='iconfont icon-icon_paging_right'></i>
         </button>

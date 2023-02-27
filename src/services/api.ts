@@ -1,26 +1,28 @@
 import axios from "./request";
-import request from './index';
+import Http from './index';
+const request = new Http()
+
 /** 获取文章分类列表 */
 export async function getCategoryList(body?: any, options?: { [key: string]: any }) {
-  return request.get<API.CateGroyList>('article/categoryList', {
+  return request.get<API.CateGroyList>('/article/categoryList', {
     method: 'GET',
-    params: body,
+    body: body,
     ...(options || {}),
   })
 }
 
 /** 获取文章列表 */
 export async function getArticleList(body?: API.QueryArticleListParams, options?: { [key: string]: any }) {
-  return request.get<API.ArtileListItem[]>('article/articleList', {
+  return request.get<API.ArtileListItem[]>('/article/articleList', {
     method: 'GET',
-    params: body,
+    query: body,
     ...(options || {}),
   });
 }
 
 /** 通过id查询文章详情 */
 export async function getArticleDetail(body?: { id: number }, options?: { [key: string]: any }) {
-  return request.get<API.ArtileListItem>('article/detail', {
+  return request.get<API.ArtileListItem>('/article/detail', {
     method: 'GET',
     params: body,
     ...(options || {}),

@@ -8,7 +8,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 const queryClient = new QueryClient()
 
 
-export default function Index(Wapper: React.FC) {
+export default function Index(Wapper: any) {
   return function Be(props: any) {
     return (
       <QueryClientProvider client={queryClient}>

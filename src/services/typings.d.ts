@@ -78,9 +78,10 @@ declare namespace API {
     createTime?: string;
     updateTime?: string;
   };
-  type a = {
+
+  type pagingResult<T> = {
     count: number;
-    list: ArtileListItem[];
+    list: T[];
   };
-  type QueryArticleResult = commonType & { data: a };
+  type QueryArticleResult = commonType & { data: pagingResult<ArtileListItem> };
 }

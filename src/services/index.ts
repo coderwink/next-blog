@@ -22,9 +22,6 @@ class Http {
     } else { //线上环境
       this.baseConfig.baseURL = `http://43.142.133.70:10000/api`;
     }
-
-    console.log(`环境搭建成功，当前环境:${process.env.NODE_ENV} `);
-    console.log(`当前请求api地址:${this.baseConfig.baseURL} `);
   }
   public async http<T>(
     request: RequestInfo

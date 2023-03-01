@@ -12,7 +12,7 @@ import 'bytemd/dist/index.css'
 import 'github-markdown-css'
 import 'highlight.js/styles/github.css'
 import 'markdown-navbar/dist/navbar.css';
-
+import Head from 'next/head'
 interface IndexProps {
   title: string;
   centerTitle: string;
@@ -31,36 +31,41 @@ const Index = function (props: IndexProps) {
     return schema
   }
   return (
-    <div className='px-2 box-border article-content relative flex md:w-2/5 md:mx-auto'>
-      <PureCard className='px-4 py-6 box-border min-h-screen markdown-body w-full'>
-        <article className=''>
-          <header>
-            <div className='text-xl'>{name}</div>
-            <div className='flex flex-col md:flex-row'>
+    <>
+      <Head>
+        <title>{name}</title>
+      </Head>
+      <div className='px-2 box-border article-content relative flex md:w-2/5 md:mx-auto'>
+        <PureCard className='px-4 py-6 box-border min-h-screen markdown-body w-full'>
+          <article className=''>
+            <header>
+              <div className='text-xl'>{name}</div>
+              <div className='flex flex-col md:flex-row'>
 
-              <div className='flex text-xs items-center mr-2 mt-4'>
-                <i className={`icon-icon iconfont `}></i>&nbsp;{createTime ? createTime : '--'}
-              </div>
+                <div className='flex text-xs items-center mr-2 mt-4'>
+                  <i className={`icon-icon iconfont `}></i>&nbsp;{createTime ? createTime : '--'}
+                </div>
 
-              <div className='flex text-xs items-center mr-2 mt-4'>
-                <i className={`icon-web__guanyuwomen iconfont`}></i>&nbsp;coderwink
-              </div>
-              {/* <div className='flex text-xs items-center'>
+                <div className='flex text-xs items-center mr-2 mt-4'>
+                  <i className={`icon-web__guanyuwomen iconfont`}></i>&nbsp;coderwink
+                </div>
+                {/* <div className='flex text-xs items-center'>
                 <i className={`icon-yanjing iconfont`}></i>&nbsp;{'--'}
               </div> */}
 
-            </div>
-          </header>
-          <section className='mt-6'>
-            <Viewer value={content} plugins={plugins} sanitize={sanitize} />
-          </section>
-        </article>
-      </PureCard>
-      <PureCard className='px-4 py-6 box-border absolute top-0 right-0 translate-x-40  hidden md:block'>
-        目录
-        <MarkdownNavbar source={content} />
-      </PureCard>
-    </div>
+              </div>
+            </header>
+            <section className='mt-6'>
+              <Viewer value={content} plugins={plugins} sanitize={sanitize} />
+            </section>
+          </article>
+        </PureCard>
+        <PureCard className='px-4 py-6 box-border absolute top-0 right-0 translate-x-40  hidden md:block'>
+          目录
+          <MarkdownNavbar source={content} />
+        </PureCard>
+      </div>
+    </>
   )
 }
 

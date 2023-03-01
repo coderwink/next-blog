@@ -3,6 +3,7 @@ import PureCard from '@/component/Widget/PureCard/Index';
 import LayoutHoc from '@/layout/index'
 import CommonList from '@/component/CommonList/Index';
 import { getArticleList } from '@/services/api'
+import Head from 'next/head'
 interface PageProps {
   title: string;
   centerTitle: string;
@@ -12,9 +13,14 @@ const Page = (props: PageProps) => {
   const { title = '', centerTitle, result } = props
 
   return (
-    <div className='w-full flex flex-col box-border px-2 md:w-2/5 md:m-auto'>
-      <PureCard><CommonList title={title} data={result} paging={true} /></PureCard>
-    </div>
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <div className='w-full flex flex-col box-border px-2 md:w-2/5 md:m-auto'>
+        <PureCard><CommonList title={title} data={result} paging={true} /></PureCard>
+      </div>
+    </>
   )
 }
 
@@ -28,7 +34,7 @@ export async function getServerSideProps(context: any) {
 
   return {
     props: {
-      title: '文章列表',
+      title: '全部文章',
       centerTitle: '知足者常乐，世事都如烟',
       result: data?.parsedBody?.data,
     },

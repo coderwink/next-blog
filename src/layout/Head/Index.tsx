@@ -6,6 +6,7 @@ import LOGO from '@/assets/img/logo.png'
 import { useRouter } from 'next/router'
 export default function Index() {
   const router = useRouter();
+
   return (
     <div className='w-full flex justify-between items-center box-border md:w-2/5 h-30 md:m-auto pt-10 px-6'>
       <div className='flex items-center cursor-pointer' onClick={() => router.push('/')}>

@@ -1,11 +1,14 @@
 
 
+
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 
 import ArticleSlice from './reducers/ArticleSlice'
+import classifySlice from './reducers/classifySlice'
+
 export function makeStore() {
   return configureStore({
-    reducer: { article: ArticleSlice },
+    reducer: { article: ArticleSlice, classify: classifySlice },
   })
 }
 

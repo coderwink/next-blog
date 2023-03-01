@@ -28,12 +28,12 @@ const About: React.FC = () => {
     }
   ]
   return (
-    <div className='px-2 h-[calc(100vh-196px)] -mt-20 md:w-2/5 md:m-auto'>
+    <div className='px-2 h-[calc(100vh-196px)] md:w-2/5 md:m-auto'>
       {/* 个人信息 */}
-      <ProfileCard />
+      {/* <ProfileCard /> */}
       {/* 对自己影响比较深刻的博主 */}
       <PureCard className='px-4 py-6 w-full'>
-        <article className=''>
+        <article>
           <section>
             <h1 className='text-2xl relative main-title'>友链</h1>
             {

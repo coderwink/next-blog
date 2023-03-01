@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "815884",
+      "name": "关闭",
+      "font_class": "close",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
       "icon_id": "6987011",
       "name": "web",
       "font_class": "web",

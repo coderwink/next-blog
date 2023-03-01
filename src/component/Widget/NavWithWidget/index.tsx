@@ -2,11 +2,11 @@ import React, { ReactNode } from 'react'
 import NavBar from '@/layout/NavBar/Index';
 
 interface NavWithWidget {
-  children: ReactNode, 
+  children: ReactNode,
   className?: string,
   [key: string]: any
 }
-export default (props: NavWithWidget) => {
+export default function index(props: NavWithWidget) {
   const { children } = props;
   return (
     <div>

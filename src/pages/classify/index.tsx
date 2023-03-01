@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import LayoutHoc from '@/layout/index'
 import PureCard from '@/component/Widget/PureCard/Index';
 import { getCategoryList } from '@/services/api';
 import { useRouter } from 'next/router'
-
+import Image from 'next/image'
 interface ClassifyProps {
   title?: string;
   centerTitle?: string;
@@ -32,7 +32,7 @@ const Index = function (props: ClassifyProps) {
                   <li onClick={() => selectCategory(item)} key={item.id} className='w-full bg-gray-100  text-center flex items-center flex-col cursor-pointer mb-4 p-4 pt-10 rounded-lg hover:bg-sky-50'>
                     <div className='relative inset-0 w-full'>
                       <div className='absolute left-1/2 transform -translate-x-1/2 '>
-                        <img src={item.coverImg} className='w-20 transition-all transform hover:scale-110 hover:transition-all' alt="分类图片" />
+                        <Image src={item.coverImg} width={600} height={600} className='w-20 transition-all transform hover:scale-110 hover:transition-all' alt="分类图片" />
                       </div>
                       <div className='pt-32'>{item.name}</div>
                     </div>

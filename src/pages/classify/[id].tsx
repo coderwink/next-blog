@@ -34,7 +34,7 @@ const Index = function (props: ClassifyProps) {
 
 
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { query: { id: articleClassifyId } } = context
   console.log(articleClassifyId);

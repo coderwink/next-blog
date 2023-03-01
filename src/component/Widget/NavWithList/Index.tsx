@@ -10,7 +10,7 @@ export default function Index(props: { title: string | undefined, articleClassif
       <div className='w-full flex'>
         <div className=" w-1/6 hidden md:block md:mr-4"><NavBar /></div>
         <PureCard>
-          <CommonList title={title} articleClassifyId={articleClassifyId} />
+          {/* <CommonList title={title} articleClassifyId={articleClassifyId} /> */}
         </PureCard>
 
       </div>

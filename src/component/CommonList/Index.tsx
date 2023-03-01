@@ -26,16 +26,7 @@ const CommonList = function (props: CommonListProp) {
   /** 前往文章详情 */
   const goArticleDetail = (id: number | undefined) => {
     // navigate("/article?id=" + id);
-    router.push(`/blog/${id}`)
-  };
-
-  /**
-      * 加载更多
-      * 此函数内进行接口请求等操作
-      */
-  const handleLoadMore = () => {
-    // console.log('触底了');
-    // setPage(pageIndex => pageIndex + 1);
+    router.push(`"/article?id=" `)
   };
 
   /**
@@ -48,8 +39,7 @@ const CommonList = function (props: CommonListProp) {
     // 文档显示区域高度
     const showHeight = window.innerHeight;
     // 网页卷曲高度
-    const scrollTopHeight =
-      document.body.scrollTop || document.documentElement.scrollTop;
+    const scrollTopHeight = document.body.scrollTop || document.documentElement.scrollTop;
     // 所有内容高度
     const allHeight = document.body.scrollHeight;
     // (所有内容高度 = 文档显示区域高度 + 网页卷曲高度) 时即为触底
@@ -57,15 +47,7 @@ const CommonList = function (props: CommonListProp) {
       handler();
     };
   };
-  /**
-   * 节流 判断是否触底
-   * 将是否触底函数进行 节流 处理
-   * @returns  function
-   */
-  const useFn = throttle(() => {
-    // 此处调用 加载更多函数
-    isTouchBottom(handleLoadMore);
-  }, 500);
+
 
   /**
    * 渲染时间
@@ -84,13 +66,6 @@ const CommonList = function (props: CommonListProp) {
     }
     return null;
   };
-
-  useEffect(() => {
-    // 开启侦听器,监听页面滚动
-    window.addEventListener("scroll", useFn);
-    // 组件销毁时移除侦听器
-    return () => { window.removeEventListener("scroll", useFn) };
-  }, []);
 
 
   if (data.list.length === 0) {

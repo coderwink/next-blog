@@ -2,11 +2,10 @@
 
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 
-import counterReducer from '../pages/test/counterSlice'
 import ArticleSlice from './reducers/ArticleSlice'
 export function makeStore() {
   return configureStore({
-    reducer: { counter: counterReducer, article: ArticleSlice },
+    reducer: { article: ArticleSlice },
   })
 }
 

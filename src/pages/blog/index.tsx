@@ -23,7 +23,6 @@ const Home = function (props: HomeProps) {
   return (
     <div className="w-full flex flex-col box-border px-2 md:w-2/5 md:m-auto">
       <PureCard><CommonList title={title} data={result} paging /></PureCard>
-      {/* <NavWithList title='最新文章' /> */}
     </div>
   )
 }

@@ -22,7 +22,7 @@ export const nextPageAsync = createAsyncThunk(
   '/getArticle/list',
   async (params: API.QueryArticleListParams) => {
     const response = await getArticleList(params)
-    return response.data
+    return response
   }
 )
 export const getCurrentAsync = createAsyncThunk(
@@ -31,7 +31,7 @@ export const getCurrentAsync = createAsyncThunk(
     console.log(params);
 
     const response = await getArticleList(params)
-    return response.data
+    return response
   }
 )
 

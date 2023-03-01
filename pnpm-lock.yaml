@@ -7,6 +7,7 @@ specifiers:
   '@bytemd/react': ^1.20.2
   '@reduxjs/toolkit': ^1.9.3
   '@types/lodash': ^4.14.191
+  '@types/markdown-navbar': ^1.4.0
   '@types/node': 18.14.1
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
@@ -61,6 +62,7 @@ dependencies:
 
 devDependencies:
   '@types/lodash': 4.14.191
+  '@types/markdown-navbar': 1.4.0
   autoprefixer: 10.4.13_postcss@8.4.21
   express: 4.18.2
   http-proxy-middleware: 2.0.6
@@ -389,6 +391,12 @@ packages:
 
   /@types/lodash/4.14.191:
     resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
+
+  /@types/markdown-navbar/1.4.0:
+    resolution: {integrity: sha512-WUG7MBobWDlKtY/d3RdBsD9ExR+UwY4zSj3XYLGEttu78AtZuOUXsW0JQb6jkjIc//Cn9qJZGW/Hs2NGaaXudA==}
+    dependencies:
+      '@types/react': 18.0.28
+    dev: true
 
   /@types/mdast/3.0.10:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}

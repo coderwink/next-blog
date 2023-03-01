@@ -1,7 +1,6 @@
 import React from 'react';
 import ProfileCard from '@/component/ProfileCard/Index';
 import PureCard from '@/component/Widget/PureCard/Index';
-import NavWithWidget from '@/component/Widget/NavWithWidget';
 import LayoutHoc from '@/layout/index'
 const About: React.FC = (props) => {
 
@@ -74,11 +73,3 @@ const About: React.FC = (props) => {
 }
 
 export default LayoutHoc(About)
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      test: 123
-    }, // will be passed to the page component as props
-  }
-}

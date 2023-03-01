@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import ProfileCard from '@/component/ProfileCard/Index';
 import CommonList from '@/component/CommonList/Index';
-import NavBar from '@/layout/NavBar/Index';
-import NavWithList from '@/component/Widget/NavWithList/Index';
 import LayoutHoc from '@/layout/index'
 import { getArticleList } from '@/services/api'
-import { nextPage, prePage, getCurrentAsync } from '@/store/reducers/ArticleSlice'
 import PureCard from '@/component/Widget/PureCard/Index'
-import { useAppSelector, useAppDispatch } from '@/store/hooks'
 interface HomeProps {
   title: string;
   centerTitle: string;
@@ -37,8 +32,7 @@ const Home = function (props: HomeProps) {
         </div>
       </PureCard>
 
-      <PureCard> <CommonList title={title} data={result} /></PureCard>
-      {/* <NavWithList title='最新文章' /> */}
+      <PureCard><CommonList title={title} data={result} /></PureCard>
     </div>
   )
 }

@@ -60,16 +60,16 @@ class Http {
     path: string,
     body: any,
     args: RequestInit = { method: "post", body: JSON.stringify(body) }
-  ): Promise<HttpResponse<T>> {
-    return await this.http<T>(new Request(path, args));
+  ): Promise<HttpResponse<API.Result<T>>> {
+    return await this.http<T>(this.createRequest<T>(path, args));
   };
 
   public async put<T>(
     path: string,
     body: any,
     args: RequestInit = { method: "put", body: JSON.stringify(body) }
-  ): Promise<HttpResponse<T>> {
-    return await this.http<T>(new Request(path, args));
+  ): Promise<HttpResponse<API.Result<T>>> {
+    return await this.http<T>(this.createRequest<T>(path, args));
   };
 
 }

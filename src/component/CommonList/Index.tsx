@@ -14,7 +14,7 @@ interface CommonListProp {
 
 // 渲染列表数据 从props 中获取
 const CommonList = function (props: CommonListProp) {
-  const { articleClassifyId = '', title = '', paging = false, data } = props;
+  const { title = '', paging = false, data } = props;
   const pageSize = 10;
   // 页码
   const router = useRouter();
@@ -25,8 +25,7 @@ const CommonList = function (props: CommonListProp) {
   const monthMap = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
   /** 前往文章详情 */
   const goArticleDetail = (id: number | undefined) => {
-    // navigate("/article?id=" + id);
-    router.push(`"/article?id=" `)
+    router.push(`/blog/${id}`);
   };
 
   /**

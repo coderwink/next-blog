@@ -14,7 +14,18 @@ class Http {
   // axios 实例
   // 基础配置，url和超时时间
   baseConfig: FetchdefaultConfig = { baseURL: process.env.NEXT_PUBLIC_BASE_API, timeout: 60000 };
+  constructor() {
+    console.log("环境开始搭建");
 
+    if (process.env.NODE_ENV === 'development') { // 开发环境
+      this.baseConfig.baseURL = `http://localhost:${process.env.Port}${process.env.NEXT_PUBLIC_BASE_API}`
+    } else { //线上环境
+      this.baseConfig.baseURL = `http://43.142.133.70:10000/api`;
+    }
+
+    console.log(`环境搭建成功，当前环境:${process.env.NODE_ENV} `);
+    console.log(`当前请求api地址:${this.baseConfig.baseURL} `);
+  }
   public async http<T>(
     request: RequestInfo
   ): Promise<HttpResponse<API.Result<T>>> {
@@ -33,7 +44,8 @@ class Http {
   }
 
   public createRequest<T>(path: string, args: RequestInitData) {
-    let apiUrl = 'http://localhost:3000' + process.env.NEXT_PUBLIC_BASE_API + path;
+
+    let apiUrl = this.baseConfig.baseURL + path;
     // 对参数进行拼接
     if (args.method?.toLocaleLowerCase() === 'get' && args.hasOwnProperty('query')) {
       console.log("存在参数，进行一个处理");

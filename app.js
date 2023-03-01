@@ -2,8 +2,8 @@ const express = require('express');
 const next = require('next');
 const dotenv = require('dotenv');
 const { createProxyMiddleware } = require('http-proxy-middleware');
-
 dotenv.config({ path: './config.env' });
+
 const hostname = '127.0.0.1';
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production'; //只在开发环境使用

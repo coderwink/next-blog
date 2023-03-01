@@ -7,14 +7,18 @@ import { useRouter } from 'next/router'
 export default function Index() {
   const router = useRouter()
   return (
-    <div className='w-full flex justify-between items-center box-border md:w-2/5 h-30 md:m-auto md:pt-10'>
-      <div className='flex items-center' onClick={() => router.push('/')}>
-        <Image src={LOGO} width={60} height={60} className='rounded-full' alt={'logo'} />
-        <span className='pl-6 font-bold text-2xl'>梦想小镇</span>
+    <div className='w-full flex justify-between items-center box-border md:w-2/5 h-30 md:m-auto pt-10 px-6'>
+      <div className='flex items-center cursor-pointer' onClick={() => router.push('/')}>
+        <Image src={LOGO} width={60} height={60} className='rounded-full hidden md:block' alt={'logo'} />
+        <span className='font-bold text-2xl ml-6'>梦想小镇</span>
       </div>
       {/* 正常页面 */}
-      <div className="hidden md:block"><NavBar /></div>
+      <div className=" hidden md:block"><NavBar /></div>
       {/* 小屏幕 这里回放置一个抽屉页面 */}
+      <div className="md:hidden">
+        <button>出席</button>
+      </div>
+
     </div>
   )
 }

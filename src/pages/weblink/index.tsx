@@ -20,43 +20,45 @@ const About: React.FC = () => {
       {
         name: '醉牛前端',
         url: 'http://f2er.club'
-      }]
+      }, {
+        name: '小马部落阁',
+        url: 'http://maqib.cn/'
+      }
+      ]
     }
   ]
   return (
-    <div className='px-2 -mt-20 md:w-3/5 md:m-auto'>
+    <div className='px-2 h-[calc(100vh-196px)] -mt-20 md:w-2/5 md:m-auto'>
       {/* 个人信息 */}
       <ProfileCard />
       {/* 对自己影响比较深刻的博主 */}
-      <NavWithWidget>
-        <PureCard className='px-4 py-6 w-full'>
-          <article className=''>
-            <section>
-              <h1 className='text-2xl relative main-title'>友链</h1>
-              {
-                link.map((item, index) => {
-                  return (
-                    <div key={index} className='mt-8'>
-                      <div className='text-xl font-bold'>{item.category}</div>
-                      <ul className='mt-2 pl-6 list-disc'>
-                        {
-                          item.value.map((itez, indey) => {
-                            return (
-                              <li key={indey} className='mb-2 w-fit hover:text-indigo-600'>
-                                <a className={styles.link} href={itez.url} target='_blank'>{itez.name}</a>
-                              </li>
-                            )
-                          })
-                        }
-                      </ul>
-                    </div>
-                  )
-                })
-              }
-            </section>
-          </article>
-        </PureCard>
-      </NavWithWidget>
+      <PureCard className='px-4 py-6 w-full'>
+        <article className=''>
+          <section>
+            <h1 className='text-2xl relative main-title'>友链</h1>
+            {
+              link.map((item, index) => {
+                return (
+                  <div key={index} className='mt-8'>
+                    <div className='text-xl font-bold'>{item.category}</div>
+                    <ul className='mt-2 pl-6 list-disc'>
+                      {
+                        item.value.map((itez, indey) => {
+                          return (
+                            <li key={indey} className='mb-2 w-fit hover:text-indigo-600'>
+                              <a className={styles.link} href={itez.url} target='_blank'>{itez.name}</a>
+                            </li>
+                          )
+                        })
+                      }
+                    </ul>
+                  </div>
+                )
+              })
+            }
+          </section>
+        </article>
+      </PureCard>
 
     </div>
   )

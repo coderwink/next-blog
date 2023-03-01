@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import PureCard from '@/component/Widget/PureCard/Index';
+
 import { throttle } from 'lodash';
-import { useQuery } from 'react-query'
 import Image from 'next/image';
+import { useRouter } from 'next/router'
 
 
 interface CommonListProp {
@@ -14,32 +14,19 @@ interface CommonListProp {
 
 // 渲染列表数据 从props 中获取
 const CommonList = function (props: CommonListProp) {
-
   const { articleClassifyId = '', title = '', paging = false, data } = props;
   const pageSize = 10;
-  //页面 上面的值
-  // const [searchParams, setSearchParams] = useSearchParams();
-
-  // 获取页面路径
-  const initPage = 1;
   // 页码
-  const [pageIndex, setPage] = React.useState(initPage);
+  const router = useRouter();
 
-  // 使用ref处理监听滚动事件 state不更新问题
-  const pageSizeRef = useRef(1);
-
+  const pageIndex = parseInt(router.query.page + '', 10) || 1
   // 每一个月份英文的缩写 取之刚好拿索引取就好了
   // const monthMap = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
   const monthMap = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
-
-
-
-
-  // 只要是菜单就一定存在
-
   /** 前往文章详情 */
   const goArticleDetail = (id: number | undefined) => {
     // navigate("/article?id=" + id);
+    router.push(`/blog/${id}`)
   };
 
   /**
@@ -113,7 +100,7 @@ const CommonList = function (props: CommonListProp) {
   }
 
   return (
-    <div className='px-4 py-6'>
+    <div className='px-4 py-6 min-h-[calc(100vh-296px)]'>
       <h1 className='text-2xl relative main-title'>{title}</h1>
       {/* 目前只支持最新 排序吧 后面在添加 */}
       <ul className=' my-6 text-xs flex flex-row-reverse'>
@@ -151,8 +138,13 @@ const CommonList = function (props: CommonListProp) {
       {/* PC 端大屏幕 使用分页 这里使用padding-left padding-right 去做居中是非常不合理的方式 */}
       {paging && <div className='flex justify-between box-border w-28 mx-auto' >
         <button
+          className=' cursor-pointer disabled:opacity-50'
+
           onClick={() => {
-            setPage((old) => Math.max(old - 1, 1));
+
+            router.push(`/blog/list/${pageIndex - 1}`)
+
+
           }}
           disabled={pageIndex === 1}
         >
@@ -162,10 +154,11 @@ const CommonList = function (props: CommonListProp) {
         <span>第{pageIndex}页</span>
 
         <button
+          className='cursor-pointer disabled:opacity-50'
           onClick={() => {
             if ((data.count / pageSize) > pageIndex) {
               // 修改页面路径
-              setPage((old) => old + 1);
+              router.push(`/blog/list/${pageIndex + 1}`)
             }
           }}
           // Disable the Next Page button until we know a next page is available
@@ -179,5 +172,5 @@ const CommonList = function (props: CommonListProp) {
 }
 
 
-export default React.memo(CommonList);
+export default CommonList;
 

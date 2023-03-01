@@ -31,46 +31,44 @@ const About: React.FC = (props) => {
     }
   ]
   return (
-    <div className='px-2 md:w-3/5 md:m-auto'>
+    <div className='px-2 md:w-2/5 md:m-auto'>
       {/* 个人信息 */}
       <ProfileCard />
       {/* 兴趣爱好 */}
-      <NavWithWidget>
-        <PureCard className='px-4 py-6 w-full'>
-          <article className=''>
-            <section>
-              <h1 className='text-2xl relative main-title'>关于</h1>
-              <p className=' text-sm mt-10'>
-                不知不觉已经从事前端行业快3年啦～  依然还得继续学习！
-              </p>
-              <p className='text-sm mt-4'>
-                兴趣： 运动 音乐 动漫 游戏
-              </p>
-              <p className='text-sm mt-4'></p>
-            </section>
-            <section>
-              <h1 className='text-2xl'>最近在做的事情</h1>
-              {/* list 表格 */}
+      <PureCard className='px-4 py-6 w-full'>
+        <article>
+          <section>
+            <h1 className='text-2xl relative main-title'>关于</h1>
+            <p className=' text-sm mt-10'>
+              不知不觉已经从事前端行业快3年啦～  依然还得继续学习！
+            </p>
+            <p className='text-sm mt-4'>
+              兴趣： 运动 音乐 动漫 游戏
+            </p>
+            <p className='text-sm mt-4'></p>
+          </section>
+          <section>
+            <h1 className='text-2xl'>最近在做的事情</h1>
+            {/* list 表格 */}
 
-              <div className='now-todo-list w-full md:flex md:flex-wrap'>
-                {
-                  todoList.map(({ id, name, desc, icon }) => {
-                    return (
-                      <div className='md:w-1/2 md:px-2' key={id}>
-                        <div className='border-gray-300 border-2 rounded-xl h-52 flex flex-col justify-center items-center my-10' key={id}>
-                          <i className={`${icon} iconfont text-4xl `} ></i>
-                          <div className='font-bold text-xl'> {name}</div>
-                          <div className='mt-5'>{desc}</div>
-                        </div>
+            <div className='now-todo-list w-full md:flex md:flex-wrap'>
+              {
+                todoList.map(({ id, name, desc, icon }) => {
+                  return (
+                    <div className='md:w-1/2 md:px-2' key={id}>
+                      <div className='border-gray-300 border-2 rounded-xl h-52 flex flex-col justify-center items-center my-10' key={id}>
+                        <i className={`${icon} iconfont text-4xl `} ></i>
+                        <div className='font-bold text-xl'> {name}</div>
+                        <div className='mt-5'>{desc}</div>
                       </div>
-                    )
-                  })
-                }
-              </div>
-            </section>
-          </article>
-        </PureCard>
-      </NavWithWidget>
+                    </div>
+                  )
+                })
+              }
+            </div>
+          </section>
+        </article>
+      </PureCard>
     </div>
   )
 }

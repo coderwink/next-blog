@@ -24,7 +24,7 @@ export async function getArticleList(body?: API.QueryArticleListParams, options?
 export async function getArticleDetail(body?: { id: number }, options?: { [key: string]: any }) {
   return request.get<API.ArtileListItem>('/article/detail', {
     method: 'GET',
-    params: body,
+    query: body,
     ...(options || {}),
   })
 }

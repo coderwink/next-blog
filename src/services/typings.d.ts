@@ -73,7 +73,7 @@ declare namespace API {
     resume?: string;
     coverImg?: string;
     author?: string;
-    content?: string;
+    content: string;
     status?: number;
     createTime?: string;
     updateTime?: string;

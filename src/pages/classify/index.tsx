@@ -1,50 +1,33 @@
 import React, { useState } from 'react';
-// import { NavigateFunction, useNavigate, useSearchParams } from 'react-router-dom';
 import LayoutHoc from '@/layout/index'
-
 import PureCard from '@/component/Widget/PureCard/Index';
-import { useQuery } from "react-query";
-import UseMutationObserver from '@/hooks/UseMutationObserver';
 import { getCategoryList } from '@/services/api';
-import NavWithList from '@/component/Widget/NavWithList/Index';
-const Index = function () {
+import { useRouter } from 'next/router'
 
-  const { isLoading, isError, data, error } = useQuery<any>('category', () => getCategoryList());
-  // 选中当前的行的数据
-  const [selectRow, setRow] = useState<API.CategoryItem>();
-  // 只要是菜单就一定存在
-  // const navigate: NavigateFunction = useNavigate();
-  if (isLoading) {
-    return <span>Loading...</span>;
-  }
-  if (isError) {
-    //@ts-ignore
-    return <span>Error: {error.message}</span>;
-  }
+interface ClassifyProps {
+  title?: string;
+  centerTitle?: string;
+  result: API.CategoryItem[]
+}
+
+const Index = function (props: ClassifyProps) {
+  const { title, result } = props
+  const router = useRouter()
   // 接受一个索引 将被选中的图片放大后进行跳转路由
   const selectCategory = (item?: API.CategoryItem) => {
-    // 首次需要调用这个方法 如何区分首次呢
-    const el = document.querySelector('#commonList') as HTMLElement
-    if (!selectRow) {
-      // 这里是否会存在闭包
-      UseMutationObserver((el: HTMLElement) => {
-        document.documentElement.scrollTop = el?.offsetTop as number - 80;
-      }, el);
-    } else {
-      document.documentElement.scrollTop = el?.offsetTop as number - 80;
-    }
-    setRow(item);
+    console.log('点了咯', item);
+    router.push(`/classify/${item?.id}`)
   };
   return (
-    <div className='-mt-10 px-2 md:w-3/5 md:mx-auto'>
+    <div className='px-2 md:w-2/5 md:mx-auto'>
       {/* 分类列表 */}
       <PureCard className='px-4 py-6 mb-6'>
-        <h1 className='text-2xl relative mb-12'>文章分类</h1>
+        <h1 className='text-2xl relative mb-12'>{title}</h1>
         {/* 文章分类容器 */}
         <div>
           <ul className='flex flex-wrap'>
             {
-              data.map((item: API.CategoryItem) => {
+              result.map((item: API.CategoryItem) => {
                 return (
                   <li onClick={() => selectCategory(item)} key={item.id} className='w-full bg-gray-100  text-center flex items-center flex-col cursor-pointer mb-4 p-4 pt-10 rounded-lg hover:bg-sky-50'>
                     <div className='relative inset-0 w-full'>
@@ -61,18 +44,23 @@ const Index = function () {
         </div>
       </PureCard>
 
-      {/* 分类详情 */}
-      <div id='commonList'>
-        {
-          selectRow ? (<div >
-            <NavWithList title={selectRow?.name} articleClassifyId={selectRow?.id} />
-            <i className='text-4xl iconfont icon-huidaodingbu fixed bottom-10 right-2' onClick={() => document.body.scrollIntoView()}></i>
-          </div>) : null
-        }
-      </div>
+
     </div>
   )
 }
 
+
+
+export async function getServerSideProps(context: any) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const data = await getCategoryList();
+  if (!data) return { notFound: true }
+  return {
+    props: {
+      title: '标签  🐲',
+      result: data?.parsedBody?.data,
+    }, // will be passed to the page component as props
+  }
+}
 
 export default LayoutHoc(Index) 

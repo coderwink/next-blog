@@ -23,7 +23,6 @@ const Index = function (props: ClassifyProps) {
 
   // 接受一个索引 将被选中的图片放大后进行跳转路由
   const selectCategory = (item: API.CategoryItem) => {
-    console.log('点了咯', item);
     dispatch(setName(item.name))
     router.push(`/classify/${item.id}`)
 

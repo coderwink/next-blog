@@ -24,8 +24,6 @@ export const nextPageAsync = createAsyncThunk(
 export const getCurrentAsync = createAsyncThunk(
   'currentList',
   async (params: API.QueryArticleListParams) => {
-    console.log(params);
-
     const response = await getArticleList(params)
     return response
   }
@@ -49,7 +47,6 @@ export const classifySlice = createSlice({
       })
       .addCase(nextPageAsync.fulfilled, (state, action) => {
         state.status = 'idle'
-        console.log(action);
         // state.value += action.payload
       })
   },

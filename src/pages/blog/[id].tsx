@@ -27,7 +27,6 @@ const plugins: any = [
 const Index = function (props: IndexProps) {
   const { title = '', result: { content = '', name = '', createTime } } = props
   const sanitize = (schema: any) => {
-    console.log(schema);
     return schema
   }
   return (

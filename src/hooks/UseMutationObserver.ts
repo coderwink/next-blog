@@ -10,7 +10,6 @@ export default function UseMutationObserver(callback: (targetNode: HTMLElement) 
   // 创建一个观察器实例并传入回调函数
   const observer = new MutationObserver(() => callback(targetNode));
   // 以上述配置开始观察目标节点
-  console.log(observer);
 
   observer.observe(targetNode, config);
   setTimeout(() => {

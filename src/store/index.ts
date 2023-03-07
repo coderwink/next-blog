@@ -5,10 +5,10 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 
 import ArticleSlice from './reducers/ArticleSlice'
 import classifySlice from './reducers/classifySlice'
-
+import configSlice from './reducers/configSlice'
 export function makeStore() {
   return configureStore({
-    reducer: { article: ArticleSlice, classify: classifySlice },
+    reducer: { article: ArticleSlice, classify: classifySlice, config: configSlice },
   })
 }
 

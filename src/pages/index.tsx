@@ -49,7 +49,6 @@ export default LayoutHoc(Home);
 
 export async function getServerSideProps(context: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  // console.log(context.params); 
   // 这里可以写死首页
   const data = await getArticleList({ pageIndex: 1, pageSize: 6 })
   return {

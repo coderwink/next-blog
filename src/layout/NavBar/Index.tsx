@@ -8,7 +8,7 @@ type menuItem = {
 }
 type menuNav<T> = T[];
 export default function NavBar() {
-
+    //todo 这个数据后面拿到后端去返回吧！ 麻烦需要改动前端代码
     const memu: menuNav<menuItem> = [{
         id: '1',
         name: '文章',
@@ -32,10 +32,17 @@ export default function NavBar() {
         icon: 'icon-lianjie',
         path: '/weblink',
 
-    }]
+    },
+    {
+        id: '5',
+        name: '日志',
+        icon: '',
+        path: '/log',
+    }
+    ]
 
     return (
-        <ul id='good' className='fixed top-0 left-0 bg-white w-full flex items-center align-middle z-50 md:static md:rounded-xl'>
+        <ul className='fixed top-0 left-0 bg-white w-full flex items-center align-middle z-50 md:static md:rounded-xl dark:bg-gray-900 dark:text-white dark:text-opacity-80 dark:divide-gray-700'>
             {
                 memu.map((item: menuItem, index: number) => {
                     return (

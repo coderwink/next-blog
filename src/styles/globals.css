@@ -2,22 +2,18 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import '@/assets/font/iconfont/iconfont.css';
+@import './markdown-github.css';
+@import './markdown-navbar.css';
 
-body {
-	/* color: #5e6e80;
-	background: #f2f4fa; */
-}
 div {
 	box-sizing: border-box;
 }
 
-.markdown-body {
-	box-sizing: border-box;
-	min-width: 200px;
-	max-width: 980px;
-	margin: 0 auto;
-	padding: 45px;
+.dark {
+	--tw-bg-opacity: 1;
+	background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
+
 .navigation {
 	background: #fff;
 	position: absolute;
@@ -25,11 +21,13 @@ div {
 	right: 0;
 	transform: translateX(100%);
 }
+
 @media (max-width: 767px) {
 	.markdown-body {
 		padding: 15px;
 	}
 }
+
 .transition-in span {
 	opacity: 1;
 }

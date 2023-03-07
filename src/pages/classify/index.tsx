@@ -32,17 +32,18 @@ const Index = function (props: ClassifyProps) {
       <Head>
         <title>标签 - 梦想小镇</title>
       </Head>
-      <div className='px-2 md:w-2/5 md:mx-auto'>
+      <div className='px-2 md:w-2/5 md:mx-auto h-screen'>
         {/* 分类列表 */}
         <PureCard className='px-4 py-6 mb-6'>
-          <h1 className='text-2xl relative mb-12'>{title}</h1>
+          <h1 className='text-3xl relative main-title mb-12'>{title}</h1>
           {/* 文章分类容器 */}
           <div>
             <ul className='flex flex-wrap'>
               {
                 result.map((item: API.CategoryItem) => {
                   return (
-                    <li onClick={() => selectCategory(item)} key={item.id} className='w-full bg-gray-100  text-center flex items-center flex-col cursor-pointer mb-4 p-4 pt-10 rounded-lg hover:bg-sky-50'>
+                    <li onClick={() => selectCategory(item)} key={item.id} className='w-full bg-gray-100  text-center flex items-center flex-col cursor-pointer mb-4 p-4 pt-10 rounded-lg
+                    dark:text-white dark:divide-gray-700 dark:text-opacity-80 dark:bg-slate-600 hover:bg-sky-50'>
                       <div className='relative inset-0 w-full'>
                         <div className='absolute left-1/2 transform -translate-x-1/2 '>
                           <Image src={item.coverImg} width={600} height={600} className='w-20 transition-all transform hover:scale-110 hover:transition-all' alt="分类图片" />
@@ -57,14 +58,11 @@ const Index = function (props: ClassifyProps) {
           </div>
         </PureCard>
 
-
       </div>
     </>
 
   )
 }
-
-
 
 export async function getServerSideProps(context: any) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -72,7 +70,7 @@ export async function getServerSideProps(context: any) {
   if (!data) return { notFound: true }
   return {
     props: {
-      title: '标签  🐲',
+      title: '标签',
       result: data?.parsedBody?.data,
     }, // will be passed to the page component as props
   }

@@ -1,41 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import CommonList from '@/component/CommonList/Index';
+import React from 'react';
 import LayoutHoc from '@/layout/index'
 import { getArticleDetail } from '@/services/api'
 import PureCard from '@/component/Widget/PureCard/Index'
-import { Editor, Viewer } from '@bytemd/react'
-import gfm from '@bytemd/plugin-gfm'
-import highlight from '@bytemd/plugin-highlight-ssr'
+import Markdown from '@/component/RenderMarkDown'
 import MarkdownNavbar from 'markdown-navbar';
+import { useAppSelector } from '@/store/hooks'
 
-import 'bytemd/dist/index.css'
-import 'github-markdown-css'
-import 'highlight.js/styles/github.css'
-import 'markdown-navbar/dist/navbar.css';
 import Head from 'next/head'
 interface IndexProps {
   title: string;
   centerTitle: string;
   result: API.ArtileListItem
 }
-
-const plugins: any = [
-  gfm(),
-  highlight()
-]
 // 封装一个hooks读取数据
 const Index = function (props: IndexProps) {
   const { title = '', result: { content = '', name = '', createTime } } = props
-  const sanitize = (schema: any) => {
-    return schema
-  }
+  const theme = useAppSelector(state => state.config.theme);
+  const haveNavBar = content.includes('# ')
   return (
     <>
       <Head>
         <title>{name}</title>
       </Head>
+      {/* 判断目录是否存在 */}
       <div className='px-2 box-border article-content relative flex md:w-2/5 md:mx-auto'>
-        <PureCard className='px-4 py-6 box-border min-h-screen markdown-body w-full'>
+        {
+          haveNavBar ? <PureCard className='px-4 py-6 box-border absolute top-0 left-0 -translate-x-60  hidden md:block'>目录
+            <MarkdownNavbar source={content} className='dark:text-white dark:text-opacity-80' />
+          </PureCard> : null
+        }
+
+        <PureCard className='px-4 py-6 box-border min-h-screen  w-full'>
           <article className=''>
             <header>
               <div className='text-xl'>{name}</div>
@@ -54,16 +49,12 @@ const Index = function (props: IndexProps) {
 
               </div>
             </header>
-            <section className='mt-6'>
-              <Viewer value={content} plugins={plugins} sanitize={sanitize} />
-            </section>
+            <section className='mt-6'> <Markdown content={content} /> </section>
           </article>
         </PureCard>
-        <PureCard className='px-4 py-6 box-border absolute top-0 right-0 translate-x-40  hidden md:block'>
-          目录
-          <MarkdownNavbar source={content} />
-        </PureCard>
+
       </div>
+
     </>
   )
 }

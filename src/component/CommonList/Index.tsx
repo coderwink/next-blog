@@ -75,7 +75,7 @@ const CommonList = function (props: CommonListProp) {
 
   return (
     <div className='px-4 py-6 min-h-[calc(100vh-296px)]'>
-      <h1 className='text-2xl relative main-title'>{title}</h1>
+      <h1 className='text-3xl relative main-title'>{title}</h1>
       {/* 目前只支持最新 排序吧 后面在添加 */}
       <ul className=' my-6 text-xs flex flex-row-reverse'>
         {/* <div>最新</div> */}
@@ -87,10 +87,10 @@ const CommonList = function (props: CommonListProp) {
           data.list.map((item: API.ArtileListItem) => {
             const { coverImg = '', name = '', createTime = '', resume } = item
             return (
-              <div key={item.id} className=' shadow-sm hover:cursor-pointer motion-reduce:transform-none rounded-xl overflow-hidden mb-8 box-border w-full md:w-1/2 md:px-4' onClick={() => goArticleDetail(item.id)}>
+              <div key={item.id} className=' shadow-sm hover:cursor-pointer motion-reduce:transform-none overflow-hidden mb-8 box-border w-full md:w-1/2 md:px-4' onClick={() => goArticleDetail(item.id)}>
                 {/* 图片 上部分 */}
                 <div className='w-full'>
-                  <div className="relative overflow-hidden rounded-xl">
+                  <div className="relative overflow-hidden rounded-xl rounded-b-none ">
                     {/* 给个时间 */}
                     {renderTime(createTime)}
                     <Image width={600} height={600} className='w-full  overflow-hidden transform hover:scale-110 motion-reduce:transform-none'
@@ -99,7 +99,7 @@ const CommonList = function (props: CommonListProp) {
                   </div>
                 </div>
                 {/* 下部分 */}
-                <div className=' text-center px-10 py-6 bg-gray-100 '>
+                <div className=' text-center px-10 py-6 bg-gray-100  dark:text-white dark:text-opacity-80 dark:divide-gray-700 dark:bg-slate-600'>
                   <div className='font-semibold  text-xl truncate box-border'>{name}</div>
                   <div className='text-sm pt-4 truncate box-border'>{resume}</div>
                 </div>

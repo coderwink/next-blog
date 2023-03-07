@@ -36,14 +36,14 @@ const About: React.FC = (props) => {
       <Head>
         <title>关于我 - 梦想小镇</title>
       </Head>
-      <div className='px-2 md:w-2/5 md:m-auto'>
+      <div className='px-2 md:w-2/5 md:m-auto  '>
         {/* 个人信息 */}
         <ProfileCard />
         {/* 兴趣爱好 */}
-        <PureCard className='px-4 py-6 w-full'>
+        <PureCard className='px-4 py-6 w-full dark:text-opacity-80'>
           <article>
             <section>
-              <h1 className='text-2xl relative main-title'>关于</h1>
+              <h1 className='text-3xl relative main-title'>关于</h1>
               <p className=' text-sm mt-10'>
                 不知不觉已经从事前端行业快3年啦～  依然还得继续学习！
               </p>

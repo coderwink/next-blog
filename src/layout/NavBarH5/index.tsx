@@ -33,7 +33,14 @@ export default function NavBarH5() {
     icon: 'icon-lianjie',
     path: '/weblink',
 
+  },
+  {
+    id: '5',
+    name: '日志',
+    icon: '',
+    path: '/log',
   }]
+
   const [flag, setFlag] = useState(false)
 
   const dealWith = () => setFlag((flag) => !flag)
@@ -48,12 +55,13 @@ export default function NavBarH5() {
       {/* 打开按钮 */}
       <IconButton icon='icon-fenlei' className='iconfont block text-3xl md:text-4xl' onClick={() => dealWith()} />
 
-      <div className={`fixed top-0 left-0 w-full h-screen overflow-hidden bg-gray-400 opacity-80 transition-transform transform z-50 ${flag ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`fixed top-0 left-0 w-full h-screen overflow-hidden bg-gray-400 opacity-80 transition-transform transform z-50 ${flag ? 'translate-x-0' : 'translate-x-full'} 
+      dark:bg-gray-900 dark:text-white dark:text-opacity-80 dark:divide-gray-700`}>
 
         {/* 关闭按钮 */}
         <IconButton icon='icon-close' className='absolute top-10 right-6' onClick={() => dealWith()} />
         {/* 标签列表 */}
-        <ul id='good' className=' w-full flex flex-col items-center align-middle absolute  top-20 left-1/2 -translate-x-1/2 '>
+        <ul className=' w-full flex flex-col items-center align-middle absolute  top-20 left-1/2 -translate-x-1/2 '>
           {
             memu.map((item: menuItem, index: number) => {
               return (

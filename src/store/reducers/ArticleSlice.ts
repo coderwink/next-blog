@@ -64,6 +64,4 @@ export const { nextPage, prePage } = articleSlice.actions
 
 export const selectArticleList = (state: AppState) => state.article.articleData
 
-
-
 export default articleSlice.reducer

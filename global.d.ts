@@ -2,3 +2,5 @@
 type BaseInfoItem = {
   title: string; content: string;
 }
+
+type modelType = "light" | 'dark' | 'system';

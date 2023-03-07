@@ -14,8 +14,10 @@ export default function Index() {
     title: '所在城市',
     content: 'HangZhou'
   }]
+
   return (
-    <div className='box-border px-10 bg-white rounded-3xl  relative  flex flex-col divide-y divide-slate-200 lg:flex-row lg:divide-x lg:divide-y-0 lg:py-10'>
+    <div className=' box-border px-10 bg-white rounded-3xl  relative  flex flex-col divide-y divide-slate-200 lg:flex-row lg:divide-x lg:divide-y-0 lg:py-10
+     dark:bg-gray-900 dark:text-white dark:text-opacity-80 dark:divide-gray-700 dark:text-opacity-80'>
       {/* 头像部分 */}
       <div className='flex flex-col items-center lg:flex-1 lg:px-2 lg:flex-row lg:mt-0'>
         <div className='w-32 h-32 rounded-full overflow-hidden shadow-xl border-4 border-white '>

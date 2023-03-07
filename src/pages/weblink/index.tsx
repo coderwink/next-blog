@@ -38,7 +38,7 @@ const About: React.FC = () => {
         <PureCard className='px-4 py-6 w-full'>
           <article>
             <section>
-              <h1 className='text-2xl relative main-title'>友链</h1>
+              <h1 className='text-3xl relative main-title'>友链</h1>
               {
                 link.map((item, index) => {
                   return (

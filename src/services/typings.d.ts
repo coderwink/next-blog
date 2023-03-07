@@ -83,5 +83,11 @@ declare namespace API {
     count: number;
     list: T[];
   };
+
+  type Log = {
+    date: string;
+    resume: string;
+  }
+
   type QueryArticleResult = commonType & { data: pagingResult<ArtileListItem> };
 }

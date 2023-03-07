@@ -46,8 +46,8 @@ export async function getServerSideProps(context: any) {
   // 这里可以写死首页
   // const data = await getArticleList({ pageIndex: 1, pageSize: 10 })
   const data: API.Log[] = [
-    { resume: '🔥 1.添加暗黑模式 2. 增加日志记录', date: '2022年3月6日' },
-    { resume: '使用nextjs重构网站增加SSR支持、静态页面渲染功能、 减轻服务器压力。', date: '2022年3月1日' },
+    { resume: '🔥 1.添加暗黑模式 2. 增加日志记录', date: '2023年3月6日' },
+    { resume: '使用nextjs重构网站增加SSR支持、静态页面渲染功能、 减轻服务器压力。', date: '2023年3月1日' },
   ]
   return {
     props: {

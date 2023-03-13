@@ -32,7 +32,7 @@ const Index = function (props: ClassifyProps) {
       <Head>
         <title>标签 - 梦想小镇</title>
       </Head>
-      <div className='px-2 md:w-2/5 md:mx-auto h-screen'>
+      <div className='px-2 md:w-2/5 md:mx-auto min-h-screen'>
         {/* 分类列表 */}
         <PureCard className='px-4 py-6 mb-6'>
           <h1 className='text-3xl relative main-title mb-12'>{title}</h1>

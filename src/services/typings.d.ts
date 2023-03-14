@@ -70,6 +70,7 @@ declare namespace API {
     id?: number;
     name?: string;
     cid?: number;
+    views: number;
     resume?: string;
     coverImg?: string;
     author?: string;

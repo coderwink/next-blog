@@ -14,7 +14,7 @@ interface IndexProps {
 }
 // 封装一个hooks读取数据
 const Index = function (props: IndexProps) {
-  const { title = '', result: { content = '', name = '', createTime } } = props
+  const { title = '', result: { content = '', name = '', createTime, views = 100 } } = props
   const theme = useAppSelector(state => state.config.theme);
   const haveNavBar = content.includes('# ')
   return (
@@ -43,9 +43,9 @@ const Index = function (props: IndexProps) {
                 <div className='flex text-xs items-center mr-2 mt-4'>
                   <i className={`icon-web__guanyuwomen iconfont`}></i>&nbsp;coderwink
                 </div>
-                {/* <div className='flex text-xs items-center'>
-                <i className={`icon-yanjing iconfont`}></i>&nbsp;{'--'}
-              </div> */}
+                <div className='flex text-xs items-center mr-2 mt-4'>
+                  <i className={`icon-yanjing iconfont`}></i>&nbsp; {views ? views : 100}
+                </div>
 
               </div>
             </header>

@@ -22,7 +22,7 @@ app
 		//写在这里可以获取环境变量
 		const devProxy = {
 			[process.env.NEXT_PUBLIC_BASE_API]: {
-				target: 'http://localhost:10000', // 外网测试环境
+				target: 'http://localhost:10000', // 本地测试环境
 				changeOrigin: true,
 				// pathRewrite: { '^/webapi': '' },
 				pathRewrite: { [`^${process.env.NEXT_PUBLIC_BASE_API}`]: '' },

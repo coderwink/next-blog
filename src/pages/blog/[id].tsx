@@ -25,7 +25,7 @@ const Index = function (props: IndexProps) {
       {/* 判断目录是否存在 */}
       <div className='px-2 box-border article-content relative flex md:w-2/5 md:mx-auto'>
         {
-          haveNavBar ? <PureCard className='px-4 py-6 box-border absolute top-0 left-0 -translate-x-60  hidden md:block'>目录
+          haveNavBar ? <PureCard className='py-6 box-border absolute top-0 left-0 -translate-x-72 hidden md:block'>目录
             <MarkdownNavbar source={content} className='dark:text-white dark:text-opacity-80' />
           </PureCard> : null
         }
